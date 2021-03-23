@@ -1,0 +1,83 @@
+
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+
+
+{% block body %}
+
+
+<div class="container">
+  <div class="card">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link " href="/" aria-disabled="true">Start</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" aria-disabled="true">Confirm</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Transfer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#" tabindex="-2" aria-disabled="true">Finalize</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body text-center">
+    <h5 class="card-title">CryptoCurrency Payment Processor</h5>
+    
+    {% if formData %}
+    
+	{% if formData['payment_status']== 'finished' %}
+	<div class="text-success" role="alert">If you made payment successfuly, wait for the system confirm alert.</div>
+	{% else %}	
+	<div class="text-danger" role="alert">Your payment not confirmed, yet.</div>
+	{% endif %}
+	<br>
+    <br>
+   
+    <form action="" method="post">
+		<div class="mb-3">
+		    <label>Pay to this wallet address:</label>
+			<p  class="text-primary"><strong>{{ formData['pay_address'] }}</strong></p>
+		</div>
+		<div class="mb-3">
+		  <label>Payment status:</label>
+		  <p class="text-warning"><strong>{{ formData['payment_status'] }}</strong></p> 
+		</div>
+		<div class="mb-3">
+		  <label>Price amount:</label>
+          <p>{{ formData['price_amount'] }}</p>
+		</div>
+		<div class="mb-3">
+		  <label>Pay amount:</label>
+		  <p class="text-info"><strong> {{ formData['pay_amount'] }}</strong></p>
+		</div>
+		<div class="mb-3">
+		  <label>Actually paid:</label>
+          <p class="text-info"><strong>{{ formData['actually_paid'] }}</strong></p>
+		</div>
+		<div class="mb-3">
+		  <label>Payment id:</label>
+          <p class="text-info"><strong>{{ formData['payment_id'] }}</strong></p> 
+		</div>
+		
+	</form>
+	{% else %}
+		<p class="card-text text-danger">We are unable to verify your payment details. Please return to the previous page to confirm your details..</p>
+		<a href="/" class="btn btn-primary">Back to start page</a>
+	{% endif %}
+  </div>
+</div>
+</div>
+{% endblock %}
+

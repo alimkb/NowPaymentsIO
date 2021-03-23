@@ -1,0 +1,73 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+
+
+{% block body %}
+
+<div class="container">
+  <div class="card row justify-content-center align-items-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link " href="/" aria-disabled="true">Start</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="#" >Confirm</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Transfer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-2" aria-disabled="true">Finalize</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">CryptoCurrency Payment Processor</h5>
+    {% if formData %}
+    
+    
+	<p class="card-text">Fill the form below and click on the Confirm button.</p>
+    <form action="/transfer" method="post">
+		<div class="mb-3">
+		    <label for="fname">Your email address:</label>
+			<input class="form-control type="text" id="email" name="email" value={{ email }}  readonly>
+		</div>
+		<div class="mb-3">
+		  <label for="currency_from">From Currency:</label>
+		  <input class="form-control" type="text" id="currency_from" name="currency_from" value={{ formData['currency_from'] }} readonly>
+		</div>
+		<div class="mb-3">
+		  <label for="currency_to">To Currency:</label>
+          <input class="form-control" type="text" id="currency_to" name="currency_to" value={{ formData['currency_to'] }} readonly>
+		</div>
+		<div class="mb-3">
+		  <label for="amount">Your Amount:</label>
+		  <input class="form-control" type="text" id="amount" name="amount" value={{ formData['amount_from'] }} readonly>
+		</div>
+		<div class="mb-3">
+	      <label for="estimated_amount">Estimated Amount:</label>
+          <input class="form-control" type="text" id="estimated_amount" name="estimated_amount" value={{ formData['estimated_amount'] }} readonly>	
+		</div>
+		<div class="col-auto">
+			<button type="submit" class="btn btn-primary mb-3">Start Payment</button>
+		</div>
+	</form>
+   {% else %}
+		<p class="card-text text-danger">We are unable to verify your payment details. Please return to the previous page to confirm your details..</p>
+		<a href="/" class="btn btn-primary">Back to start page</a>
+   {% endif %}
+  </div>
+</div>
+</div>
+
+{% endblock %}
+

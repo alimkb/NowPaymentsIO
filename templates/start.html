@@ -1,0 +1,66 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+
+
+{% block body %}
+
+
+
+<div class="container">
+  <div class="card row justify-content-center align-items-center">
+  <div class="card-header">
+    <ul class="nav nav-pills card-header-pills">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">Start</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" aria-disabled="true">Confirm</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Transfer</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-2" aria-disabled="true">Finalize</a>
+      </li>
+    </ul>
+  </div>
+  <div class="card-body">
+	  
+{% if message %}
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <span>{{ message }}</span>
+            </div>
+
+{% endif %}
+    <h5 class="card-title">CryptoCurrency Payment Processor</h5>
+    <p class="card-text">Fill the form below and click on the Next button.</p>
+    <form action="/confirm" method="post">
+		<div class="mb-3">
+		    <label for="fname">Your email address:</label>
+			<input class="form-control" type="email" id="email" name="email"  >
+		</div>
+		<div class="mb-3">
+		  <label for="currency_from">You pay with:</label>
+		  <input class="form-control" type="text" id="currency_from" name="currency_from" value="usdttrc20" readonly>
+		</div>
+		<div class="mb-3">
+		  <label for="amount">Set amount:</label>
+		  <input class="form-control" type="number" id="amount" name="amount" min="0" data-bind="value:replyNumber">
+		</div>
+		<div class="col-auto">
+			<button type="submit" class="btn btn-primary mb-3">Next Step</button>
+		</div>
+	</form>
+  </div>
+</div>
+</div>
+
+{% endblock %}
